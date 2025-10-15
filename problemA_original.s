@@ -8,7 +8,7 @@ new_line: .string "\n"
 .text
 main:
     li s11, 0
-    li a0, 0x01 # test data
+    li a0, 0x64 # test data
 test: 
     jal ra, input_text_console
  
@@ -20,7 +20,7 @@ test:
     jal ra, uf8_encode
     jal ra, encode_text_console
     
-    li t0, 4
+    li t0, 3
     addi s11, s11, 1
     mv a0, s0
     addi a0, a0, 47

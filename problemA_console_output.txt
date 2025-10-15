@@ -1,19 +1,15 @@
-Input:1
-Decode:1
-Encode:1
+Input:100
+Decode:1264
+Encode:100
 
-Input:48
-Decode:112
-Encode:48
+Input:147
+Decode:9712
+Encode:147
 
-Input:95
-Decode:976
-Encode:95
+Input:194
+Decode:73712
+Encode:194
 
-Input:142
-Decode:7664
-Encode:142
-
-Input:189
-Decode:59376
-Encode:189
+Input:241
+Decode:557040
+Encode:241
