@@ -1,0 +1,58 @@
+iscv-none-elf-gcc -g -march=rv32i_zicsr main.c -o main.o -c
+riscv-none-elf-as -g -march=rv32izicsr perfcounter.S -o perfcounter.o
+perfcounter.S: Assembler messages:
+perfcounter.S: Warning: end of file not at end of a line; newline inserted
+riscv-none-elf-ld -T linker.ld -o test.elf start.o main.o perfcounter.o main.o
+riscv-none-elf-ld: main.o: in function `uf8_decode':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:45: multiple definition of `uf8_decode'; main.o:/home/ianrwan/rv32emu/tests/system/hw2/main.c:45: first defined here
+riscv-none-elf-ld: main.o: in function `uf8_encode_optimized':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:54: multiple definition of `uf8_encode_optimized'; main.o:/home/ianrwan/rv32emu/tests/system/hw2/main.c:54: first defined here
+riscv-none-elf-ld: main.o: in function `main':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:113: multiple definition of `main'; main.o:/home/ianrwan/rv32emu/tests/system/hw2/main.c:113: first defined here
+riscv-none-elf-ld: warning: test.elf has a LOAD segment with RWX permissions
+riscv-none-elf-ld: main.o: in function `test':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:95:(.text+0x214): undefined reference to `printf'
+riscv-none-elf-ld: /home/ianrwan/rv32emu/tests/system/hw2/main.c:101:(.text+0x244): undefined reference to `printf'
+riscv-none-elf-ld: main.o: in function `main':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:114:(.text+0x2ac): undefined reference to `puts'
+riscv-none-elf-ld: main.o: in function `test':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:95:(.text+0x214): undefined reference to `printf'
+riscv-none-elf-ld: /home/ianrwan/rv32emu/tests/system/hw2/main.c:101:(.text+0x244): undefined reference to `printf'
+riscv-none-elf-ld: main.o: in function `main':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:114:(.text+0x2ac): undefined reference to `puts'
+make: *** [Makefile:25: test.elf] Error 1
+
+ld -T linker.ld -o test.elf start.o main.o perfcounter.o
+ld: cannot represent machine `riscv'
+make: *** [Makefile:25: test.elf] Error 1
+
+riscv-none-elf-as -g -march=rv32izicsr start.S -o start.o
+start.S: Assembler messages:
+start.S: Warning: end of file not at end of a line; newline inserted
+riscv-none-elf-gcc -g -march=rv32i_zicsr main.c -o main.o -c
+riscv-none-elf-as -g -march=rv32izicsr perfcounter.S -o perfcounter.o
+perfcounter.S: Assembler messages:
+perfcounter.S: Warning: end of file not at end of a line; newline inserted
+riscv-none-elf-ld -T linker.ld -o test.elf start.o main.o perfcounter.o
+riscv-none-elf-ld: warning: test.elf has a LOAD segment with RWX permissions
+riscv-none-elf-ld: main.o: in function `test':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:95:(.text+0x214): undefined reference to `printf'
+riscv-none-elf-ld: /home/ianrwan/rv32emu/tests/system/hw2/main.c:101:(.text+0x244): undefined reference to `printf'
+riscv-none-elf-ld: main.o: in function `main':
+/home/ianrwan/rv32emu/tests/system/hw2/main.c:114:(.text+0x2ac): undefined reference to `puts'
+make: *** [Makefile:25: test.elf] Error 1
+
+riscv-none-elf-as -g -march=rv32izicsr start.S -o start.o
+start.S: Assembler messages:
+start.S: Warning: end of file not at end of a line; newline inserted
+riscv-none-elf-gcc -g -march=rv32i_zicsr main_bare_metal.c -o main_bare_metal.o -c
+riscv-none-elf-as -g -march=rv32izicsr perfcounter.S -o perfcounter.o
+perfcounter.S: Assembler messages:
+perfcounter.S: Warning: end of file not at end of a line; newline inserted
+riscv-none-elf-ld -T linker.ld -o test.elf start.o main_bare_metal.o perfcounter.o
+riscv-none-elf-ld: warning: test.elf has a LOAD segment with RWX permissions
+riscv-none-elf-ld: main_bare_metal.o: in function `print_dec':
+/home/ianrwan/rv32emu/tests/system/hw2/main_bare_metal.c:64:(.text+0x170): undefined reference to `__umodsi3'
+riscv-none-elf-ld: /home/ianrwan/rv32emu/tests/system/hw2/main_bare_metal.c:67:(.text+0x1b0): undefined reference to `__udivsi3'
+make: *** [Makefile:25: test.elf] Error 1
+
